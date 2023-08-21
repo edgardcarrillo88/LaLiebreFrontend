@@ -1,0 +1,80 @@
+
+
+  /* Estilos generales para el login que se aplicarán a todas las pantallas */
+  /* Agrega tus estilos generales aquí */
+
+
+  .navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    height: 5vh;
+    background-color: rgba(0, 0, 0, 0.25);
+    padding: 1vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+  .mobilemenu{
+    font-size: 1vw;
+    font-family: "DM Sans", Sans-serif;
+    color: white;
+}
+
+.navbaroption{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.linkoption{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-right: 0.75vw;
+    font-size: 0.75vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    text-decoration: none;
+}
+
+.loginoption{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 0.75vw;
+    height: 4vh;
+    width: 5vw;
+    border-radius: 1.2vw;
+
+    text-decoration: none;
+    border:0.15vw solid #47b2e4;
+    color: white;
+    background-color: transparent;
+    margin-left: 0.75vw;    
+}
+
+
+/* Estilos específicos para pantallas de celular */
+@media screen and (max-width: 600px) {
+
+    
+}
+/* Estilos específicos para pantallas de laptop */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  /* .mobilemenu{
+    display: none;
+  } */
+}
+/* Estilos específicos para pantallas wide */
+@media screen and (min-width: 1025px) {
+ /* .mobilemenu{
+    display: none;
+ } */
+}
