@@ -28,6 +28,6 @@ export async function middleware(request) {
 }
 
 export const config = {
-    matcher: ['/dashboard/:path*','/review','/schedule','/register','/']
-    //matcher: ['/dashboard/:path*','/']
+    //matcher: ['/dashboard/:path*','/review','/schedule','/register','/']
+    matcher: ['/setting']
 }
