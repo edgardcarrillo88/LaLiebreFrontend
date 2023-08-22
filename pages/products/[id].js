@@ -17,7 +17,7 @@ export default function productdetail({ productId }) {
                         src={productimage}
                         alt="Logo"
                         priority
-                        className={styles.productImage} 
+                        className={styles.productImage}
                     />
                 </div>
                 <div className={styles.details}>
@@ -29,6 +29,85 @@ export default function productdetail({ productId }) {
                     <p className={styles.label}>descripcion</p>
                     <p className={styles.productdetail}>{productId.descripcion}</p>
                     <button className={styles.buttonschedule}>Gestionar reparto</button>
+                </div>
+            </div>
+
+            <div className={styles.deliverycontainer}>
+                <div className={styles.origincontainer}>
+                    <h1>ORIGEN</h1>
+                    <div className={styles.dataorigincontainer}>
+                        <div className={styles.cellscontainer}>
+                            <div className={styles.labelboxcontainer}>
+                                <p>Dirección de recojo</p>
+                                <input placeholder="Dirección de recojo"></input>
+                            </div>
+
+                            <div className={styles.labelboxcontainer}>
+                                <p>N° Casa, Dpto. Lote</p>
+                                <input placeholder="N° Casa, Dpto. Lote"></input>
+                            </div>
+                        </div>
+                        <div className={styles.cellscontainer}>
+                            <div className={styles.labelboxcontainer}>
+                                <p>Nombre</p>
+                                <input placeholder="Nombre de quien envía"></input>
+                            </div>
+
+                            <div className={styles.labelboxcontainer}>
+                                <p>Celular</p>
+                                <input placeholder="Celular"></input>
+                            </div>
+
+                            <div className={styles.labelboxcontainer}>
+                                <p>Distrito</p>
+                                <input placeholder="Seleccione Distrito"></input>
+                            </div>
+                        </div>
+                        <div className={styles.cellscontainer}>
+                            <div className={styles.labelboxcontainer}>
+                                <p>Referencia</p>
+                                <textarea placeholder="Referencia, indicaciones, etc." />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.origincontainer}>
+                    <h1>DESTINO</h1>
+                    <div className={styles.dataorigincontainer}>
+                        <div className={styles.cellscontainer}>
+                            <div className={styles.labelboxcontainer}>
+                                <p>Dirección de recojo</p>
+                                <input placeholder="Dirección de recojo"></input>
+                            </div>
+
+                            <div className={styles.labelboxcontainer}>
+                                <p>N° Casa, Dpto. Lote</p>
+                                <input placeholder="N° Casa, Dpto. Lote"></input>
+                            </div>
+                        </div>
+                        <div className={styles.cellscontainer}>
+                            <div className={styles.labelboxcontainer}>
+                                <p>Nombre</p>
+                                <input placeholder="Nombre de quien envía"></input>
+                            </div>
+
+                            <div className={styles.labelboxcontainer}>
+                                <p>Celular</p>
+                                <input placeholder="Celular"></input>
+                            </div>
+
+                            <div className={styles.labelboxcontainer}>
+                                <p>Distrito</p>
+                                <input placeholder="Seleccione Distrito"></input>
+                            </div>
+                        </div>
+                        <div className={styles.cellscontainer}>
+                            <div className={styles.labelboxcontainer}>
+                                <p>Referencia</p>
+                                <textarea placeholder="Referencia, indicaciones, etc." />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
