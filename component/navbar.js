@@ -35,6 +35,7 @@ export default function Menu() {
                 <Link className={style.linkoption} href="/register">Registrar productos</Link>
                 <Link className={style.linkoption} href="/review">Revision de stock</Link>
                 <Link className={style.linkoption} href="/dashboard">Dashboard</Link>
+                <Link className={style.linkoption} href="/delivery">Delivery</Link>
             <div className={style.loginoption}>
                 {!user && <Link className={style.linkoption} href="/login">Login</Link>}
                 {user && <Link className={style.linkoption} href="/login" onClick={() => logoutProfile()}>LogOut</Link>}
