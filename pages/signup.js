@@ -40,64 +40,60 @@ export default function register() {
     };
 
 
-
-
-
     return (
         <>
-            <Navbar />
             <div className={styles.container}>
-                <Image
-                    className={styles.logo}
-                    src={logo}
-                    alt="Logo"
-                    width={100}
-                    height={100}
-                    priority
-                />
-                <h1>Registrarse</h1>
-                <form className={styles.form}
-                //onSubmit={handleSubmit}
-                >
-                    <input
-                        className={styles.input}
-                        name="usuario"
-                        type="Nombres"
-                        placeholder="Nombres"
-                        onChange={handleChange}
-                    />
-                    <input
-                        className={styles.input}
-                        name="correo"
-                        type="email"
-                        placeholder="Email"
-                        onChange={handleChange}
-                    />
-                    <input
-                        className={styles.input}
-                        name="empresa"
-                        type="empresa"
-                        placeholder="empresa"
-                        onChange={handleChange}
-                    />
-                    <input
-                        className={styles.input}
-                        name="celular"
-                        type="Celular"
-                        placeholder="Celular"
-                        onChange={handleChange}
-                    />
-                    <input
-                        className={styles.input}
-                        name="contrasena"
-                        type="password"
-                        placeholder="Password"
-                        onChange={handleChange}
-                    />
-                    <button className={styles.button} onClick={handleSubmit} type="submit">
-                        Registrarse
-                    </button>
-                </form>
+                <Navbar />
+                <div className={styles.formcontainer}>
+                    <form className={styles.form}>
+                        <Image
+                            className={styles.logo}
+                            src={logo}
+                            alt="Logo"
+                            width={100}
+                            height={100}
+                            priority
+                        />
+                        <input
+                            className={styles.input}
+                            name="usuario"
+                            type="Nombres"
+                            placeholder="Nombres"
+                            onChange={handleChange}
+                        />
+                        <input
+                            className={styles.input}
+                            name="correo"
+                            type="email"
+                            placeholder="Email"
+                            onChange={handleChange}
+                        />
+                        <input
+                            className={styles.input}
+                            name="empresa"
+                            type="empresa"
+                            placeholder="empresa"
+                            onChange={handleChange}
+                        />
+                        <input
+                            className={styles.input}
+                            name="celular"
+                            type="Celular"
+                            placeholder="Celular"
+                            onChange={handleChange}
+                        />
+                        <input
+                            className={styles.input}
+                            name="contrasena"
+                            type="password"
+                            placeholder="Password"
+                            onChange={handleChange}
+                        />
+                        <button className={styles.button} onClick={handleSubmit} type="submit">
+                            Registrarse
+                        </button>
+                    </form>
+                </div>
             </div>
         </>
 
