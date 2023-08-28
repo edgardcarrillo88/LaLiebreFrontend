@@ -2,6 +2,7 @@ import Navbar from '../component/navbar'
 import Image from 'next/image'
 import Link from "next/link";
 import logo from '../public/logo.webp'
+import Cookie from 'js-cookie'
 
 import { useState } from "react";
 import axios from "axios";
@@ -30,13 +31,19 @@ export default function Login() {
     console.log(credentials);
     const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/`, { params: credentials });
 
+    Cookie.set('MyTokenName', response.data.token, {
+      expires: 30, // Expires in 30 days
+      path: '/',    // Set the path to '/'
+    });
 
-    if (response.data.data === process.env.NEXT_PUBLIC_LOGIN_VERIFY) {
-      const verifysesion = await axios.post(`/api/auth/login`, credentials);
-      if (verifysesion.status === 200) {
-        router.push("/register");
-      }
-    }
+    router.push("/register");
+
+    // if (response.data.data === process.env.NEXT_PUBLIC_LOGIN_VERIFY) {
+    //   const verifysesion = await axios.post(`/api/auth/login`, credentials);
+    //   if (verifysesion.status === 200) {
+    //     router.push("/register");
+    //   }
+    // }
   };
 
   return (

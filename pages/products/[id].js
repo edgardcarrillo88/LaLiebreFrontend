@@ -28,7 +28,7 @@ export default function productdetail({ productId }) {
                     <p className={styles.productdetail}>{productId.cantidad}</p>
                     <p className={styles.label}>descripcion</p>
                     <p className={styles.productdetail}>{productId.descripcion}</p>
-                    <button className={styles.buttonschedule}>Gestionar reparto</button>
+                    <button className={styles.buttonschedule}>Action button</button>
                 </div>
             </div>
         </>

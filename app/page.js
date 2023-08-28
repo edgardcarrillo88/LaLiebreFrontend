@@ -10,7 +10,7 @@ export default function Home() {
       <div className={styles.main}>
         <div className={styles.header}>
           <div className={styles.name}>
-            <h1>La Lliebre Courier</h1>
+            <h1>La Liebre Courier</h1>
           </div>
           <div className={styles.options}>
             <h1>Nosotros</h1>
@@ -24,7 +24,6 @@ export default function Home() {
         <div className={styles.body}>
           <div className={styles.comment}>
             <h1>Conecatando rutas, Cumpliendo entregas</h1>
-            {/* <p>Parada de Planta Marcobre</p> */}
           </div>
           <div className={styles.logo}>
             <img src={logo} alt='' />

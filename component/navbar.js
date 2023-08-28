@@ -2,6 +2,8 @@ import Link from "next/link";
 import style from "../styles/navbar.module.css"
 import { useEffect, useState } from 'react';
 import axios from "axios";
+import Cookie from 'js-cookie'
+import { useRouter } from "next/router";
 
 export default function Menu() {
 
@@ -11,22 +13,34 @@ export default function Menu() {
         username: ''
     })
 
+    const router = useRouter();
 
-    useEffect(() => {
-        async function getprofile() {
-            try {
-                const response = await axios.get('/api/profile')
-                setUser(response.data)
-            } catch (error) {
-                if (error.response && error.response.status === 401) {
-                    setUser(null);
-                    console.log(!user);
-                }
-            }
-        }
-        getprofile();
-    }, [])
+    // useEffect(() => {
+    //     async function getprofile() {
+    //         try {
+    //             console.log("profile de navbar");
+    //             const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`)
+    //             console.log(response);
+    //             setUser(response.data)
+    //         } catch (error) {
+    //             if (error.response && error.response.status === 401) {
+    //                 setUser(null);
+    //                 console.log(!user);
+    //             }
+    //         }
+    //     }
+    //     getprofile();
+    // }, [])
 
+
+    const logoutProfile = () =>{
+        Cookie.set('MyTokenName', null, {
+            expires: 0, // Expires in 30 days
+            path: '/',    // Set the path to '/'
+          });
+      
+          router.push("/");
+    }
 
     return (
         <nav className={style.navbar}>
