@@ -76,7 +76,7 @@ export default function delivery() {
             return
         }
 
-        if (selectedItem.Cantidad > 0 || selectedItem.Cantidad === '') {
+        if (selectedItem.Cantidad === 0 || selectedItem.Cantidad === '') {
             alert("Debe ingresar la cantidad")
             return
         }
