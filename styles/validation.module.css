@@ -93,3 +93,31 @@ width: 5vw;
 border-radius: 1vw;
 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+
+.buttonflex{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.buttonsave{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: #0d45a5;
+    border-radius: 3vw;
+    width: 10vw;
+    height: 5vh;
+    font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background .4s ease-in-out, border .4s ease-in-out;
+    color: white;
+    border: 0px;
+    font-size: 0.75vw;
+    margin-top: 5vh;
+}
+
+.buttonsave:hover{
+    background: green;
+  }

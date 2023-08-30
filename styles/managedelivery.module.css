@@ -1,0 +1,76 @@
+.maincontainer{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.listdeliverycontainer{
+    border-radius: 1.2vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    height: 180vh;
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.react-calendar {
+    /* cabecera de calendario */
+    width: 350px;
+    height: 200px;
+    max-width: 100%;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.125em;
+    border-radius: 10px;
+  }
+  
+  
+  .react-calendar,
+  .react-calendar *,
+  .react-calendar *:before,
+  .react-calendar *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  .react-calendar__tile--active {
+    background-color: red;
+}
+
+
+  .react-calendar button {
+    /* NUmeros de calendario */
+    margin: 0;
+    border: 0;
+    outline: none;
+    background-color: white;
+    height: 28px;
+  }
+  
+  .react-calendar button:enabled:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+    border-radius: 5px;
+  }
+  
+  .listcontainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width:58vw;
+    margin-left: 0.5vw;
+    margin-bottom: 1vw;
+    padding: 0.5vw;
+    border-radius: 0.5vw;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  }

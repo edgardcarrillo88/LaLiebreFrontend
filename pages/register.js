@@ -194,6 +194,16 @@ export default function register() {
                                     <input onChange={handlechange} name='cantidad' type='number' defaultValue={1}></input>
                                 </div>
                             </div>
+                            <div className={styles.columncontainer}>
+                                {/* cabecera */}
+                                <div className={styles.headercontainer}>
+                                    <p>Precio</p>
+                                </div>
+                                {/* items */}
+                                <div className={styles.rowcontainer}>
+                                    <input onChange={handlechange} name='cantidad' type='number' defaultValue={1}></input>
+                                </div>
+                            </div>
                         </div>
                         <button className={styles.singlecontainerbutton} onClick={savedata}>Guardar</button>
                     </div>
