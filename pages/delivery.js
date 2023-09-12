@@ -2,6 +2,7 @@ import styles from '../styles/delivery.module.css'
 import Navbar from '../component/navbar'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import Cookies from 'js-cookie';
 
 
 export default function delivery() {
@@ -119,8 +120,19 @@ export default function delivery() {
         async function getdata() {
             try {
 
+                const token = Cookies.get('MyTokenName');
+                console.log("mostrando token");
+                console.log(token);
+
+
+                // const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
+                //     withCredentials: true
+                // })
+
                 const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
-                    withCredentials: true
+                    params: {
+                        cookietoken: token
+                    }
                 })
                 setUser(responseuser.data)
 

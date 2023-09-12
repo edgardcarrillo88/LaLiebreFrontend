@@ -25,8 +25,14 @@ export default function review() {
                 console.log(token);
 
 
+                // const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
+                //     withCredentials: true
+                // })
+
                 const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
-                    withCredentials: true
+                    params: {
+                        cookietoken: token
+                    }
                 })
 
 

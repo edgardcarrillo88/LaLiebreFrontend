@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from '../styles/register.module.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Cookies from 'js-cookie';
 
 export default function register() {
 
@@ -35,10 +36,21 @@ export default function register() {
                 const { data } = response.data;
                 setOptions(data);
 
+                const token = Cookies.get('MyTokenName');
+                console.log("mostrando token");
+                console.log(token);
+
+
+                // const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
+                //     withCredentials: true
+                // })
+
                 const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
-                    withCredentials: true
+                    params: {
+                        cookietoken: token
+                    }
                 })
-                setUser(responseuser)
+                setUser(responseuser.data)
 
             } catch (error) {
                 console.error("no se que mierda paso", error);

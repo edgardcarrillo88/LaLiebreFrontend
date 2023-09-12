@@ -2,7 +2,7 @@ import Navbar from '../component/navbar'
 import Image from 'next/image'
 import Link from "next/link";
 import logo from '../public/logo.webp'
-import Cookie from 'js-cookie'
+import Cookies from 'js-cookie'
 
 import { useState } from "react";
 import axios from "axios";
@@ -32,7 +32,7 @@ export default function Login() {
     const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/login`, { params: credentials });
 
     console.log(response.data);
-    Cookie.set('MyTokenName', response.data.token, {
+    Cookies.set('MyTokenName', response.data.token, {
       expires: 30, // Expires in 30 days
       path: '/',    // Set the path to '/'
     });

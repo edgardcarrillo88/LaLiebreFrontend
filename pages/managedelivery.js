@@ -3,6 +3,7 @@ import Calendar from 'react-calendar'
 import styles from '../styles/managedelivery.module.css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export default function managedelivery() {
 
@@ -35,8 +36,19 @@ export default function managedelivery() {
         async function getdata() {
             try {
 
+                const token = Cookies.get('MyTokenName');
+                console.log("mostrando token");
+                console.log(token);
+
+
+                // const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
+                //     withCredentials: true
+                // })
+
                 const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
-                    withCredentials: true
+                    params: {
+                        cookietoken: token
+                    }
                 })
                 setUser(responseuser.data)
                 console.log(responseuser.data);
