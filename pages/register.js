@@ -12,18 +12,19 @@ export default function register() {
     const [isLoading, setIsLoading] = useState(null);
 
     const [data, setData] = useState({
-        categoria: "",
+        categoria: "Belleza y Cuidado Personal",
         descripcion: "",
-        unidadmedida: "",
-        talla: "",
+        unidadmedida: "conjunto",
+        talla: "-",
         marca: "",
         modelo: "",
-        cantidad: ""
+        cantidad: "1",
+        Precio: "1"
     })
 
     const [user, setUser] = useState({
-        email: '',
-        username: ''
+        correo: '',
+        empresa: ''
     })
 
 
@@ -32,9 +33,12 @@ export default function register() {
             try {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/options`)
                 const { data } = response.data;
-                console.log(data);
                 setOptions(data);
-                console.log(options);
+
+                const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
+                    withCredentials: true
+                })
+                setUser(responseuser)
 
             } catch (error) {
                 console.error("no se que mierda paso", error);
@@ -46,7 +50,6 @@ export default function register() {
 
     const handleoptions = (e) => {
         setIsLoading(e.target.value === "true");
-        console.log(isLoading);
     }
 
     const handlefile = (e) => {
@@ -74,19 +77,23 @@ export default function register() {
             ...data,
             [e.target.name]: e.target.value
         })
-        console.log(data);
     }
 
     const savedata = async () => {
         console.log("guardando registro individual");
         try {
-            console.log(data);
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/singleregister`, data)
-            console.log(response.data.message);
+            const isDataComplete = Object.values(data).every(value => value !== "");
+            if (isDataComplete === false) {
+                alert("debes llenar todos los campos")
+                return
+            }
+            
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/singleregister`, {data, user})
+            alert("Datos guardados")
         } catch (error) {
             console.error(error);
         }
-        
+
 
     }
 

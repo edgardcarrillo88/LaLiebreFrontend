@@ -6,7 +6,6 @@ import axios from 'axios';
 export default function validation() {
 
     const [products, setProducts] = useState([])
-    const [productsfilter, setProductsfilter] = useState([])
 
     useEffect(() => {
         async function getdata() {
@@ -20,13 +19,13 @@ export default function validation() {
         getdata()
     }, [])
 
-    const handlecant = (e,id) => {
+    const handlecant = (e, id) => {
         const productUpdate = products.find(product => product._id === id)
-        productUpdate.cantidad=e.target.value
+        productUpdate.cantidad = e.target.value
     }
 
     const handlevalidation = async () => {
-       await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/validation`,products)
+        await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/validation`, products)
     }
 
     return (
@@ -58,8 +57,10 @@ export default function validation() {
                                         <td>{item.marca}</td>
                                         <td>{item.modelo}</td>
                                         <td>
-                                            <input type='number' defaultValue={item.cantidad} onChange={(e) => handlecant(e,item._id)}></input>
-                                        </td>
+                                            <input type='number' defaultValue={item.cantidad} onChange={(e) => handlecant(e, item._id)}></input>
+                                            <button>Borrar</button>
+                                            <button>Validar</button>
+                                        </td>   
                                     </tr>
                                 ))
                             }

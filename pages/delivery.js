@@ -42,6 +42,12 @@ export default function delivery() {
 
     const [CantidadLista, setCantidadLista] = useState('')
 
+    const [user, setUser] = useState({
+        correo: '',
+        empresa: ''
+    })
+
+
     const handleorigin = (e) => {
         setOrigen({
             ...origen,
@@ -112,7 +118,17 @@ export default function delivery() {
     useEffect(() => {
         async function getdata() {
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/getalldata`)
+
+                const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
+                    withCredentials: true
+                })
+                setUser(responseuser.data)
+
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/getalldata`,{
+                    params: {
+                        userData: responseuser.data
+                    }
+                })
                 setProducts(response.data.data);
             } catch (error) {
                 console.error("no se que mierda paso", error);
@@ -150,7 +166,15 @@ export default function delivery() {
     }
 
     const submitdelivery = async () =>{
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/registerdelivery`,{addedItems, origen, destino})
+        const isDataOrigin = Object.values(origen).every(value => value !== "");
+        const isDataDestiny = Object.values(destino).every(value => value !== "");
+        const isDataProducts = Object.values(destino).every(value => value !== "");
+            if (isDataOrigin === false || isDataDestiny===false || isDataProducts===false) {
+                alert("debes llenar todos los campos")
+                return
+            }
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/registerdelivery`,{addedItems, origen, destino, user})
+        alert("Datos guardados")
     }
 
     return (

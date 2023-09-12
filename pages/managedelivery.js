@@ -9,8 +9,13 @@ export default function managedelivery() {
     const [date, setDate] = useState(new Date());
     const [products, setProducts] = useState([])
     const [checkedItems, setCheckedItems] = useState({});
-    const [Motorizado, setMotorizado] = useState();
+    const [Motorizado, setMotorizado] = useState("Motorizado 1");
     const [productsSelected, setproductsSelected] = useState([])
+
+    const [user, setUser] = useState({
+        correo: '',
+        empresa: ''
+    })
 
 
     const [ListMotorizado, setListMotorizado] = useState(
@@ -29,7 +34,18 @@ export default function managedelivery() {
     useEffect(() => {
         async function getdata() {
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/getdeliverydata`)
+
+                const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
+                    withCredentials: true
+                })
+                setUser(responseuser.data)
+                console.log(responseuser.data);
+
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/getdeliverydata`,{
+                    params: {
+                        userData: responseuser.data
+                    }
+                })
                 setProducts(response.data.data);
             } catch (error) {
                 console.error("no se que mierda paso", error);
@@ -60,6 +76,9 @@ export default function managedelivery() {
             console.log('Checkbox deseleccionado');
             console.log(products[index]);
             products[index].Motorizado = "TBD"
+            const newDataFilter = productsSelected.filter(item => item._id !== itemId);
+            setproductsSelected(newDataFilter);
+            console.log(productsSelected);
         }
     }
 
@@ -82,7 +101,6 @@ export default function managedelivery() {
                     </div>
                     <div>
                         <select onChange={handleMotorizado}>
-                            <option>Seleccione motorizado</option>
                             <option>Motorizado 1</option>
                             <option>Motorizado 2</option>
                             <option>Motorizado 3</option>
@@ -96,7 +114,7 @@ export default function managedelivery() {
                                     <p>{item.Motorizado}</p>
                                     <div>
                                         {
-                                            productsSelected.map(item => (
+                                            productsSelected.filter(dato => dato.Motorizado === item.Motorizado).map(item => (
                                                 <li>{item.descripcion}</li>
                                             ))
                                         }

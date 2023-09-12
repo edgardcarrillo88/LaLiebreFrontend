@@ -8,12 +8,30 @@ export default function review() {
 
     const [products, setProducts] = useState([])
 
+    const [user, setUser] = useState({
+        correo: '',
+        empresa: ''
+    })
+
+
 
     useEffect(() => {
         async function getdata() {
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/getalldata`)
+                const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
+                    withCredentials: true
+                })
+                console.log(responseuser);
+                setUser(responseuser.data)
+
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/getalldata`,{
+                    params: {
+                        userData: responseuser.data
+                    }
+                })
                 setProducts(response.data.data);
+
+                
             } catch (error) {
                 console.error("no se que mierda paso", error);
             }

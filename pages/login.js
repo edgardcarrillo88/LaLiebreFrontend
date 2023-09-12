@@ -29,8 +29,9 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(credentials);
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/`, { params: credentials });
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/login`, { params: credentials });
 
+    console.log(response.data);
     Cookie.set('MyTokenName', response.data.token, {
       expires: 30, // Expires in 30 days
       path: '/',    // Set the path to '/'
