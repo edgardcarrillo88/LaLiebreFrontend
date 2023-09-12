@@ -3,6 +3,7 @@ import styles from '../styles/review.module.css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from "next/router";
+import Cookies from 'js-cookie';
 
 export default function review() {
 
@@ -18,9 +19,17 @@ export default function review() {
     useEffect(() => {
         async function getdata() {
             try {
+
+                const token = Cookies.get('MyTokenName');
+                console.log("mostrando token");
+                console.log(token);
+
+
                 const responseuser = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
                     withCredentials: true
                 })
+
+
                 console.log(responseuser);
                 setUser(responseuser.data)
 
