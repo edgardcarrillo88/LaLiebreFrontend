@@ -28,7 +28,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(credentials);
+    //console.log(credentials);
     const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/login`, { params: credentials });
 
     console.log(response.data);
