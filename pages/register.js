@@ -83,8 +83,10 @@ export default function register() {
              }   
             })
             console.log(response);
+            alert("archivo cargado")
         } catch (error) {
             console.log(error);
+            alert("problemas con la carga de archivos")
         }
     }
 

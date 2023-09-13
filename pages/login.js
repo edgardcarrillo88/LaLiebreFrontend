@@ -37,14 +37,10 @@ export default function Login() {
       path: '/',    // Set the path to '/'
     });
 
-    router.push("/register");
+    setTimeout(() => {
+      router.push("/register");
+    }, 100);
 
-    // if (response.data.data === process.env.NEXT_PUBLIC_LOGIN_VERIFY) {
-    //   const verifysesion = await axios.post(`/api/auth/login`, credentials);
-    //   if (verifysesion.status === 200) {
-    //     router.push("/register");
-    //   }
-    // }
   };
 
   return (
