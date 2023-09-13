@@ -94,7 +94,7 @@ export default function review() {
                                         <td>{item.modelo}</td>
                                         <td>{item.cantidad}</td>
                                         <td className={styles.statusbarcontainer}>
-                                            <p className={styles.statusbar}>En envío</p>
+                                            <p className={styles.statusbar}>{item.status}</p>
                                         </td>
                                     </tr>
                                 ))

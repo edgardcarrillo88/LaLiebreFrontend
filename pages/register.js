@@ -77,7 +77,11 @@ export default function register() {
         console.log(newfile.get('file'));
         try {
             console.log("ejecutando");
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/files`, newfile)
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/files`,newfile, {
+             params:{
+                user: user
+             }   
+            })
             console.log(response);
         } catch (error) {
             console.log(error);

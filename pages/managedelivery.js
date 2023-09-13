@@ -94,6 +94,11 @@ export default function managedelivery() {
         }
     }
 
+    
+    const  submitenvios = async () => {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/setdelivery`,productsSelected)
+        alert("Delivery asignado")
+    }
 
 
     return (
@@ -136,7 +141,7 @@ export default function managedelivery() {
                         }
                     </div>
                     <div>
-                        <button>Guardar</button>
+                        <button onClick={submitenvios}>Guardar</button>
                     </div>
                 </div>
                 <div className={styles.listdeliverycontainer}>
