@@ -39,7 +39,7 @@ export default function Login() {
 
     setTimeout(() => {
       router.push("/register");
-    }, 100);
+    }, 1000);
 
   };
 
