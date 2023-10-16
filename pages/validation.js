@@ -1,76 +1,92 @@
-import Navbar from '../component/navbar'
-import styles from '../styles/validation.module.css'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import Navbar from "../component/navbar";
+import styles from "../styles/validation.module.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useAuth } from "../context/AuthContext";
+// import Router from "next/router";
 
 export default function validation() {
+  const [products, setProducts] = useState([]);
+  const { isAuth } = useAuth();
+  // const router = useRouter();
 
-    const [products, setProducts] = useState([])
+//   if (!isAuth) {
+//     return router.push("/login");
+//   }
 
-    useEffect(() => {
-        async function getdata() {
-            try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/pending`)
-                setProducts(response.data.data);
-            } catch (error) {
-                console.error("no se que mierda paso", error);
-            }
-        };
-        getdata()
-    }, [])
-
-    const handlecant = (e, id) => {
-        const productUpdate = products.find(product => product._id === id)
-        productUpdate.cantidad = e.target.value
+  useEffect(() => {
+    async function getdata() {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/data/pending`
+        );
+        setProducts(response.data.data);
+      } catch (error) {
+        console.error("no se que mierda paso", error);
+      }
     }
+    getdata();
+  }, []);
 
-    const handlevalidation = async () => {
-        await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data/validation`, products)
-    }
+  const handlecant = (e, id) => {
+    const productUpdate = products.find((product) => product._id === id);
+    productUpdate.cantidad = e.target.value;
+  };
 
-    return (
-        <>
-            <div className={styles.maincontainer}>
-                <Navbar />
-                <h1 className={styles.pageTitle}>Lista productos recien ingresados</h1>
-                <div className={styles.tablecontainer}>
-                    <table className={styles.table}>
-                        <thead>
-                            <tr>
-                                <th>Cliente</th>
-                                <th>Descripción</th>
-                                <th>UM</th>
-                                <th>talla</th>
-                                <th>Marca</th>
-                                <th>Modelo</th>
-                                <th>Cantidad</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                products.map(item => (
-                                    <tr key={item.id}>
-                                        <td>Cliente</td>
-                                        <td>{item.descripcion}</td>
-                                        <td>{item.unidadmedida}</td>
-                                        <td>{item.talla}</td>
-                                        <td>{item.marca}</td>
-                                        <td>{item.modelo}</td>
-                                        <td>
-                                            <input type='number' defaultValue={item.cantidad} onChange={(e) => handlecant(e, item._id)}></input>
-                                            <button>Borrar</button>
-                                            <button>Validar</button>
-                                        </td>   
-                                    </tr>
-                                ))
-                            }
-                        </tbody>
-                    </table>
-                    <div className={styles.buttonflex}>
-                        <button className={styles.buttonsave} onClick={handlevalidation}>Guardar</button>
-                    </div>
-                </div>
-            </div >
-        </>
-    )
-};
+  const handlevalidation = async () => {
+    await axios.post(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/data/validation`,
+      products
+    );
+  };
+
+  return (
+    <>
+      <div className={styles.maincontainer}>
+        <Navbar />
+        <h1 className={styles.pageTitle}>Lista productos recien ingresados</h1>
+        <div className={styles.tablecontainer}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Descripción</th>
+                <th>UM</th>
+                <th>talla</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((item) => (
+                <tr key={item.id}>
+                  <td>Cliente</td>
+                  <td>{item.descripcion}</td>
+                  <td>{item.unidadmedida}</td>
+                  <td>{item.talla}</td>
+                  <td>{item.marca}</td>
+                  <td>{item.modelo}</td>
+                  <td>
+                    <input
+                      type="number"
+                      defaultValue={item.cantidad}
+                      onChange={(e) => handlecant(e, item._id)}
+                    ></input>
+                    <button>Borrar</button>
+                    <button>Validar</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className={styles.buttonflex}>
+            <button className={styles.buttonsave} onClick={handlevalidation}>
+              Guardar
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

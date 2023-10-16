@@ -1,20 +1,22 @@
-import Navbar from '../component/navbar'
-import Image from 'next/image'
+import Navbar from "../component/navbar";
+import Image from "next/image";
 import Link from "next/link";
-import logo from '../public/logo.webp'
-import Cookies from 'js-cookie'
+import logo from "../public/logo.webp";
+import Cookies from "js-cookie";
 
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import styles from "../styles/login.module.css";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Login() {
-
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState(null);
+  const { signin } = useAuth();
 
   const router = useRouter();
 
@@ -25,22 +27,16 @@ export default function Login() {
     });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //console.log(credentials);
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/login`, { params: credentials });
-
-    console.log(response.data);
-    Cookies.set('MyTokenName', response.data.token, {
-      expires: 30, // Expires in 30 days
-      path: '/',    // Set the path to '/'
-    });
-
-    setTimeout(() => {
-      router.push("/register");
-    }, 1000);
-
+    console.log(credentials);
+    try {
+      const result = await signin(credentials.email, credentials.password);
+      if (result) router.push("/register");
+    } catch (error) {
+      console.log(error);
+      setError(error.response.data);
+    }
   };
 
   return (
@@ -49,6 +45,8 @@ export default function Login() {
         <Navbar />
         <div className={styles.formcontainer}>
           <form className={styles.form} onSubmit={handleSubmit}>
+            {error && <p>{error.message}</p>}
+
             <Image
               className={styles.logo}
               src={logo}
@@ -79,7 +77,6 @@ export default function Login() {
           </form>
         </div>
       </div>
-
     </>
   );
 }
