@@ -16,6 +16,7 @@ export const useAuth = function () {
 export const AuthProvider = function ({ children }) {
   const [user, setUser] = useState(null);
   const [isAuth, setIsAuth] = useState(false);
+  const [isAuthNavbar, setIsAuthNavbar] = useState(false);
 
   async function signin(email, password) {
     const response = await axios.post(
@@ -30,6 +31,7 @@ export const AuthProvider = function ({ children }) {
 
     if (response.status === 200) {
       console.log(response.data);
+      console.log(response.data.user.rol);
       setUser(response.data.user);
       setIsAuth(true);
 
@@ -46,7 +48,6 @@ export const AuthProvider = function ({ children }) {
 
   useEffect(() => {
     const token = Cookies.get("MyTokenName");
-    console.log(token);
 
     axios
       .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/profile`, {
@@ -57,6 +58,7 @@ export const AuthProvider = function ({ children }) {
       .then((res) => {
         setUser(res.data);
         setIsAuth(true);
+
       })
       .catch((err) => {
         console.log(err);

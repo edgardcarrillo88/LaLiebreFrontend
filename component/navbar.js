@@ -6,16 +6,12 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { useAuth } from "@/context/AuthContext";
 
+
 export default function Menu() {
-  const [user, setUser] = useState({
-    correo: "",
-    empresa: "",
-  });
 
-  const [isLoading, setIsLoading] = useState(false);
   const { isAuth } = useAuth();
-
   const router = useRouter();
+  const { user: userData } = useAuth();
 
   //   useEffect(() => {
   //     console.log("El useEffect se está ejecutando...");
@@ -56,8 +52,6 @@ export default function Menu() {
   //     verifyusers();
   //   }, []);
 
-  console.log(isLoading);
-  console.log(user);
 
   const logoutProfile = () => {
     Cookies.set("MyTokenName", null, {
@@ -81,17 +75,17 @@ export default function Menu() {
         <Link className={style.linkoption} href="/delivery">
           Delivery
         </Link>
-        {user.empresa === "La Liebre" && (
+        {userData?.rol==="admin" && (
           <Link className={style.linkoption} href="/validation">
             Validación de Inventario
           </Link>
         )}
-        {isLoading && (
+        {userData?.rol==="admin" && (
           <Link className={style.linkoption} href="/managedelivery">
             Gestión de envios
           </Link>
         )}
-        {isLoading && (
+        {userData?.rol==="admin" && (
           <Link className={style.linkoption} href="/dashboard">
             Dashboard
           </Link>
